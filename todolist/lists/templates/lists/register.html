@@ -1,0 +1,17 @@
+{% extends 'lists/base.html' %}
+
+{% block content %}
+
+<div class="mx-4 md:mx-32 my-16 bg-white shadow p-8 px-8 rounded-sm">
+    <h1>{{title}}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for f in form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+            <div class="form-error" style="border: 1px solid #2C2C2C">{{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit" style="border: 3px solid #2C2C2C">Регистрация</button>
+    </form>
+</div>
+
+{% endblock %}
