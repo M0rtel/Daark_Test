@@ -6,7 +6,7 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent
 dir = str(os.getenv("DIR"))
 user = str(os.getenv("USER"))
-password = str(os.getenv("228482304"))
+password = str(os.getenv("PASSWORD"))
 
 LOGGING = {
     "version": 1,
