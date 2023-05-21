@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -5,13 +7,21 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from .forms import RegisterUserForm
-from .models import List
+from .models import List, Folder
 
 
 @login_required
 def home(request):
+    return render(request, 'lists/folder.html', {
+        'folders': request.user.folders.all()
+    })
+
+
+@login_required
+def folder_detail(request, folder_id):
+    user_folder = get_object_or_404(Folder, id=folder_id)
     return render(request, 'lists/index.html', {
-        'lists': request.user.lists.all()
+        'folder': user_folder
     })
 
 
